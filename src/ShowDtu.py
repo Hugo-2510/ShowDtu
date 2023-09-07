@@ -4,7 +4,7 @@ import subprocess
 import webbrowser
 import urllib.request
 
-debug = 0   # set debug flag to 1 to print als log messages with LogMsg()
+debug   = 0 # set debug flag to 1 to print als log messages with LogMsg()
 testing = 0 # set testing flag, when the DTU is not available in the network
 
 def getLocalIPs():
@@ -51,7 +51,8 @@ def getDtuIP(IP_ADRESS):
     LogMsg("IP_ADRESS: " , IP_ADRESS)
     for IP in IP_ADRESS:
         LogMsg(IP)
-        if isDtu(IP):
+        routerIP = '192.168.2.1'
+        if isDtu(IP) and (IP != routerIP):
             return IP
             break
     return "DTU konnte nicht gefunden werden"
@@ -69,7 +70,7 @@ def main():
     IP = getLocalIPs()
     LogMsg("Local IP MAIN:", IP)
     DtuIP = getDtuIP(IP)
-    print("DTU IP :", DtuIP)
+    print("DTU IP lautet:", DtuIP)
     openDtuLiveView(DtuIP)
 
 if __name__ == "__main__":
